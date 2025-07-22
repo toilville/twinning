@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+  nextcloud:
+    image: nextcloud:latest
+    container_name: twinning-nextcloud
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - nextcloud_data:/var/www/html
+      - ./data/nextcloud:/var/www/html/data
+    environment:
+      - NEXTCLOUD_ADMIN_USER=admin
+      - NEXTCLOUD_ADMIN_PASSWORD=admin123
+      - NEXTCLOUD_TRUSTED_DOMAINS=localhost
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: twinning-prometheus
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: twinning-grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin123
+
+  firefly:
+    image: fireflyiii/core:latest
+    container_name: twinning-firefly
+    restart: unless-stopped
+    ports:
+      - "8081:8080"
+    volumes:
+      - firefly_upload:/var/www/html/storage/upload
+    environment:
+      - APP_KEY=base64:SomeRandomStringOf32CharsExactly
+      - DB_CONNECTION=sqlite
+      - APP_URL=http://localhost:8081
+
+  influxdb:
+    image: influxdb:2.0
+    container_name: twinning-influxdb
+    restart: unless-stopped
+    ports:
+      - "8086:8086"
+    volumes:
+      - influxdb_data:/var/lib/influxdb2
+    environment:
+      - INFLUXDB_DB=twinning
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=admin123
+
+volumes:
+  nextcloud_data:
+  prometheus_data:
+  grafana_data:
+  firefly_upload:
+  influxdb_data:
