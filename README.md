@@ -2,13 +2,13 @@
 
 **AI-Augmented Self-Hosted Infrastructure Platform**
 
-*Built by workers, for workers - amplifying human expertise through data sovereignty*
+*A #ProleVibeSummer Project - Built by workers, for workers - amplifying human expertise through data sovereignty*
 
 ---
 
 ## What is Twinning?
 
-Self-hosted AI infrastructure for complete data ownership, privacy-focused analytics, and human-amplified insights. Supports Toilville's #ProleVibeSummer experiment and consulting credibility through real-world AI testing.
+A #ProleVibeSummer experiment in self-hosted AI infrastructure designed for complete data ownership, privacy-focused analytics, and human-amplified insights. Part of Toilville's week-long test of AI-only business operations - demonstrating that algorithms can toil while humans vibe.
 
 **Key Features:**
 - **Complete data sovereignty** - Self-hosted Nextcloud, databases, analytics
@@ -40,6 +40,13 @@ Self-hosted AI infrastructure for complete data ownership, privacy-focused analy
 
 See `docs/PHASE_*_TODO.md` for detailed implementation plans.
 
+## #ProleVibeSummer Philosophy
+
+"Let the algorithms toil while the humans vibe" - Twinning embodies this philosophy by handling the operational infrastructure while humans focus on strategic thinking and creative work.
+
 ## Built By
 
 Toilville Consulting - Testing AI collaboration that amplifies human expertise rather than replacing it.
+
+---
+*Part of the #ProleVibeSummer AI collaboration experiment*
