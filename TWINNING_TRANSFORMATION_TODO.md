@@ -3,12 +3,22 @@
 ## Objective
 Transform the Phase 0.5 Toolkit into the **Twinning** project, integrating with the existing toilville organization's GitHub work, Notion assets, and #ProleVibeSummer experiment.
 
+## Phase 0: Toilville Weekly Work Research (Priority)
+- [ ] **Step 0.1**: Read `research/weekly_summary.md` - Understand this week's toilville activities
+- [ ] **Step 0.2**: Read `research/toolset_best_practices.md` - Review MCP toolset integration guidelines  
+- [ ] **Step 0.3**: Read `research/notion_weekly_summary.md` - Analyze Notion workspace updates
+- [ ] **Step 0.4**: Read `research/prolevibesummerproject.md` - Review #ProleVibeSummer experiment details
+- [ ] **Step 0.5**: Synthesize findings into Twinning integration strategy document
+- [ ] **Step 0.6**: Update Twinning project scope based on current toilville ecosystem status
+- [ ] **Step 0.7**: Identify specific Phase0.5 components that align with active toilville projects
+- [ ] **Step 0.8**: Create mapping between this week's GitHub issues and Twinning features
+
 ## Phase 1: Discovery & Analysis (Small API Calls)
 - [ ] **Step 1.1**: Read and analyze `research/Phase0.5_Toolkit_Final/docs/CHAT_LOG_SUMMARY.md`
 - [ ] **Step 1.2**: Read and analyze `research/Phase0.5_Toolkit_Final/docs/GETTING_STARTED.md`
 - [ ] **Step 1.3**: Read and analyze `research/Phase0.5_Toolkit_Final/docs/MASTER_TODO_LIST.md`
 - [ ] **Step 1.4**: Read and analyze `research/Phase0.5_Toolkit_Final/docs/PHASE_ROADMAP.md`
-- [ ] **Step 1.5**: Review existing toilville weekly summary for integration points
+- [ ] **Step 1.5**: Cross-reference Phase0.5 goals with Phase 0 research findings
 
 ## Phase 2: Project Structure Setup
 - [ ] **Step 2.1**: Update main README.md to reflect "Twinning" branding
@@ -22,7 +32,7 @@ Transform the Phase 0.5 Toolkit into the **Twinning** project, integrating with 
   - Notion Social Automation → Creative workflows
   - Rockford Pipeline → Health/Data ETL
   - DUYinoboy → Audio/Creative tools
-- [ ] **Step 3.2**: Create integration plan document
+- [ ] **Step 3.2**: Create integration plan document based on Phase 0 research
 - [ ] **Step 3.3**: Update toolsets.jsonc to include Twinning-specific tools
 - [ ] **Step 3.4**: Link to existing GitHub issues and PRs where relevant
 
@@ -76,10 +86,12 @@ Transform the Phase 0.5 Toolkit into the **Twinning** project, integrating with 
 - Take breaks between phases to reset limits
 
 ## Next Session Goals
-Start with Phase 1, Steps 1.1-1.3 to understand the existing Phase0.5 content and requirements.
+**PRIORITY**: Start with Phase 0, Steps 0.1-0.3 to understand current toilville ecosystem before proceeding with Phase0.5 integration.
 
 ## Notes
+- **NEW**: Phase 0 research is critical to align Twinning with current toilville work
 - Keep original Phase0.5 materials as reference
 - Maintain connection to #ProleVibeSummer experiment
 - Integrate with existing toilville ecosystem
 - Focus on AI-human collaboration as core theme
+- Use Phase 0 findings to inform all subsequent phases
