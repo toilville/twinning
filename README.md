@@ -8,13 +8,17 @@
 
 ## What is Twinning?
 
-A #ProleVibeSummer experiment in self-hosted AI infrastructure designed for complete data ownership, privacy-focused analytics, and human-amplified insights. Part of Toilville's week-long test of AI-only business operations - demonstrating that algorithms can toil while humans vibe.
+**A #ProleVibeSummer experiment in technology sovereignty** - where Peter Swimm's choices, not platform algorithms, determine how data flows and AI amplifies human expertise. This self-hosted infrastructure platform demonstrates that true AI collaboration requires complete data ownership and platform independence.
 
-**Key Features:**
-- **Complete data sovereignty** - Self-hosted Nextcloud, databases, analytics
-- **Privacy-focused AI** - Local LLMs, on-device processing, encrypted storage  
-- **Comprehensive analytics** - Health, finance, creative, business metrics
-- **AI-assisted insights** - Automated summaries, trend analysis, predictions
+**Core Philosophy:**
+In an AI-driven world, **data sovereignty isn't optional** - it's fundamental to maintaining human agency. Twinning rejects the false choice between AI capabilities and personal control, proving that the most powerful AI collaboration happens when humans own their data, choose their tools, and determine their technological destiny.
+
+**Technology Sovereignty Principles:**
+- **Your data, your rules** - Self-hosted Nextcloud, databases, analytics with zero platform lock-in
+- **AI that serves you** - Local LLMs, on-device processing, encrypted storage controlled by your choices
+- **Platform independence** - Open-source alternatives to SaaS dependencies, ensuring long-term technological freedom
+- **Human-controlled automation** - AI amplifies expertise without surrendering decision-making authority
+- **Comprehensive personal intelligence** - Health, finance, creative, and business metrics unified under your control
 
 ## Quick Start
 
@@ -42,11 +46,28 @@ See `docs/PHASE_*_TODO.md` for detailed implementation plans.
 
 ## #ProleVibeSummer Philosophy
 
-"Let the algorithms toil while the humans vibe" - Twinning embodies this philosophy by handling the operational infrastructure while humans focus on strategic thinking and creative work.
+**"Let the algorithms toil while the humans vibe"** - but only when humans control the algorithms. Twinning embodies Peter Swimm's vision that meaningful AI collaboration requires technological sovereignty: you choose the tools, own the data, and determine how AI amplifies your expertise.
+
+**Technology Sovereignty in Practice:**
+- **Self-determined infrastructure** - Every component chosen for alignment with human values, not vendor profit
+- **Data ownership as foundation** - Personal and business intelligence flows through systems you control
+- **Platform independence as strategy** - Open-source alternatives eliminate dependency on corporate decisions
+- **AI collaboration on your terms** - Local processing, private insights, human-controlled automation
+
+This isn't just about privacy - it's about **preserving human agency** in an AI-driven world where platform choices increasingly determine the boundaries of what's possible.
 
 ## Built By
 
-Toilville Consulting - Testing AI collaboration that amplifies human expertise rather than replacing it.
+**Peter Swimm** - Toilville Consulting founder with 25+ years technology experience, implementing AI collaboration that amplifies human expertise while preserving data sovereignty and technological choice.
+
+**Integration with Notion Spellwork Guidelines:**
+Twinning follows Toilville's comprehensive toolset best practices, integrating:
+- **Knowledge Graph Management** - Entity relationship tracking for personal and business intelligence
+- **Event-Driven Automation** - Cross-platform workflows that respect data ownership
+- **Documentation Synchronization** - Notion databases with local data sovereignty
+- **Team Coordination** - Apple ecosystem integration without cloud dependency
+
+This project demonstrates the **toilville toolset philosophy**: sophisticated automation through self-controlled infrastructure, proving that platform independence and AI collaboration aren't mutually exclusive.
 
 ---
-*Part of the #ProleVibeSummer AI collaboration experiment*
+*Part of the #ProleVibeSummer AI collaboration experiment - where technology serves human choices, not corporate algorithms*
