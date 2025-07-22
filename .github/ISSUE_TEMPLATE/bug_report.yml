@@ -1,0 +1,68 @@
+name: Bug Report
+description: Something's broken? Let us know!
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! We're all just regular folks trying to build useful stuff, so the more details you can give us, the better we can help.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What went wrong?
+      description: Tell us what broke and what you were trying to do
+      placeholder: "I was trying to... but instead it..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What should have happened?
+      description: What did you expect to happen instead?
+      placeholder: "It should have..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: How can we reproduce this?
+      description: Steps to reproduce the bug
+      placeholder: |
+        1. Do this...
+        2. Then this...
+        3. Bug happens
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Your setup
+      description: What are you running this on?
+      placeholder: |
+        OS: 
+        Version: 
+        Other relevant info:
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Anything else?
+      description: Screenshots, error messages, or other context that might help
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/USERNAME/PROJECT_NAME/blob/main/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

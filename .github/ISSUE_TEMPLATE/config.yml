@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 💬 General Discussion
+    url: https://github.com/toilville/twining/discussions
+    about: Got questions? Want to chat about ideas? Start here.
+  - name: 📖 Documentation
+    url: https://github.com/toilville/twining/blob/main/README.md
+    about: Check the docs first - might already have what you need.

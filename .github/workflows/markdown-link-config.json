@@ -1,0 +1,14 @@
+{
+  "ignorePatterns": [
+    {
+      "pattern": "^https://github.com/USERNAME/"
+    },
+    {
+      "pattern": "^https://github.com/.*PROJECT_NAME.*"
+    },
+    {
+      "pattern": "{{.*}}"
+    }
+  ],
+  "aliveStatusCodes": [200, 206]
+}

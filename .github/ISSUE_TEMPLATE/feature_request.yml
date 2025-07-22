@@ -1,0 +1,62 @@
+name: Feature Request
+description: Got an idea for something useful?
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the idea! We're building for real people with real problems, so tell us what would actually be useful.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: What's the pain point you're trying to address?
+      placeholder: "Right now I have to... and it's annoying because..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: What would you like to see?
+      description: What would make this better?
+      placeholder: "It would be great if..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: users
+    attributes:
+      label: Who would use this?
+      description: Help us understand if this is worth building
+      placeholder: "This would help people who..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Workarounds you've tried
+      description: What are you doing now? What other tools exist?
+      placeholder: "Currently I'm using... but it doesn't work well because..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Anything else?
+      description: Examples, mockups, or other context
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/USERNAME/PROJECT_NAME/blob/main/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

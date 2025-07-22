@@ -1,0 +1,9 @@
+# Template Metadata for GitHub
+name: Prole Vibe Summer Project Template
+description: Use this template to bootstrap new #ProleVibeSummer projects - AI-powered experiments that amplify human expertise. A Toilville project.
+labels:
+  - template
+  - starter
+  - toilville
+  - ai-collaboration
+  - prole-vibe-summer
