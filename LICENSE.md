@@ -1,36 +1,33 @@
-# Twinning Digital Twin Platform
-## Functional Source License 1.0 (Apache-2.0 Future) with Nonprofit Exception
+# Twinning - AI-Human Collaboration Platform
 
-Copyright (c) 2025 Toilville Consulting / Peter Swimm
+**Copyright (c) 2025 Toilville Consulting / Peter Swimm**
 
-### Grant of License
-Subject to the terms below, we grant you the right to use, copy, modify, 
-and distribute this software for any Permitted Purpose.
+## All Rights Reserved
 
-### Permitted Purposes
-- **Individual Use**: Personal projects, learning, research, experimentation
-- **Nonprofit Organizations**: 501(c)(3) organizations and international equivalents
-- **Certified B-Corporations**: Organizations with verified B-Corp certification
-- **Educational Institutions**: Schools, universities, libraries, research institutions
-- **Open Source Contribution**: Contributing improvements back to this project
+This software and associated documentation files (the "Software") are proprietary and confidential. All rights, title, and interest in and to the Software are and will remain the exclusive property of Toilville Consulting.
 
-### Commercial Licensing Required
-Commercial use by entities with >$1M annual revenue requires a separate 
-commercial license. Contact licensing@itstoilville.com for commercial terms.
+### Restrictions
 
-**Commercial use includes but is not limited to:**
-- Using Twinning to provide services to clients
-- Embedding Twinning in commercial products
-- Offering Twinning as a hosted service
-- Using Twinning for internal business operations (>$1M revenue)
+- **No Use Without Permission**: You may not use, copy, modify, merge, publish, distribute, sublicense, or sell copies of the Software without explicit written permission from Toilville Consulting.
 
-### Automatic Conversion
-Two years after each version's publication date, that version automatically 
-converts to Apache License 2.0.
+- **No Redistribution**: You may not redistribute the Software in any form or by any means.
 
-### Contact
-- **Commercial Licensing**: licensing@itstoilville.com
-- **Nonprofit Verification**: nonprofit@itstoilville.com
-- **Questions**: hello@itstoilville.com
+- **No Reverse Engineering**: You may not reverse engineer, decompile, or disassemble the Software.
 
-For full license text and terms: https://fsl.software/
+- **Viewing Only**: This public repository is provided for informational and demonstration purposes only.
+
+### Contact for Licensing
+
+For inquiries about licensing, commercial use, or permission to use this software:
+
+- **Email**: licensing@itstoilville.com
+- **General Contact**: hello@itstoilville.com
+- **Website**: https://itstoilville.com
+
+### Disclaimer
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+---
+
+*This is a temporary licensing arrangement while we evaluate the most appropriate open source license for this project. We remain committed to eventually providing this technology under terms that support the broader community while protecting our intellectual property interests.*
