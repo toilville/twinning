@@ -30,6 +30,9 @@
 - Testing environment for MCP server development
 
 **MCP Integration Points:**
+- **Apple MCP Server** (✅ Implemented): Native Apple ecosystem integration (Calendar, Notes, Contacts, Mail, Reminders, Messages, Maps)
+- **GitHub MCP Server** (✅ Active): Code repository management and collaboration
+- **Notion MCP Server** (✅ Active): Knowledge management and documentation
 - **Twinning Filesystem MCP**: Access to organized personal data
 - **Twinning Analytics MCP**: Business intelligence queries via MCP
 - **Twinning Health MCP**: Personal health data integration
