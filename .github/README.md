@@ -1,19 +1,72 @@
-# Prole Vibe Summer Project Template
+# Twinning
 
-This repository is designed to be used as a template for new #ProleVibeSummer projects - AI-powered experiments that amplify human expertise rather than replacing it. A Toilville project. It includes:
+**AI-Human Collaboration Platform with Complete Data Sovereignty**
 
-- A customizable README and CONTRIBUTING guide with AI workflow documentation
-- Issue and pull request templates designed for tracking AI-human collaboration
-- A setup script to bootstrap your project with proper placeholders
-- Template metadata for GitHub discovery
+*Your Data, Your Rules - AI amplifies humans, never replaces human choice*
 
-## How to Use
+[![License](https://img.shields.io/badge/license-All%20Rights%20Reserved-red.svg)](../LICENSE.md)
+[![MCP](https://img.shields.io/badge/MCP-Model%20Context%20Protocol-orange.svg)](../docs/MCP_ECOSYSTEM.md)
+[![AI Ethics](https://img.shields.io/badge/AI-SPELWork%20Framework-green.svg)](../docs/TWINNING_ARCHITECTURE.md#spelwork-ethical-framework-integration)
+[![Data Sovereignty](https://img.shields.io/badge/Data-Self%20Hosted-purple.svg)](../docs/TWINNING_ARCHITECTURE.md#data-sovereignty-architecture)
 
-1. Click "Use this template" on GitHub to create a new repository.
-2. Run `setup-prole-project.sh` to personalize your README and CONTRIBUTING files.
-3. Follow the Toilville philosophy: let algorithms toil while humans vibe, but keep humans in the loop.
-4. Start building AI tools that amplify human expertise!
+## 🎯 What is Twinning?
+
+**Twinning** is a self-hosted AI infrastructure platform that empowers human agency through ethical AI collaboration. Built on the principle of "Your Data, Your Rules," Twinning provides complete data sovereignty while amplifying human capabilities through intelligent automation.
+
+## 🏗️ Production-Ready Platform
+
+### Microservices Architecture
+- **🧠 Intelligence Service**: 64.3 contacts/sec processing with Rockford integration
+- **💾 Memory Service**: pgvector semantic search with OMAC coordination  
+- **📱 Social Service**: Multi-platform AI content automation (Scuttle)
+- **🎯 Core Service**: Orchestration and health monitoring
+
+### MCP Ecosystem Integration
+- **📱 Apple MCP**: Calendar, Notes, Mail, Contacts, Reminders, Messages, Maps
+- **🐙 GitHub MCP**: Repository management, issues, PRs, releases
+- **📝 Notion MCP**: Knowledge management and databases
+- **📡 RSS MCP**: Content aggregation and monitoring
+
+## 🚀 Quick Start
+
+```bash
+# Clone and start all services
+git clone https://github.com/toilville/twinning.git
+cd twinning
+docker-compose up
+
+# Services available at:
+# - Core: http://localhost:3000
+# - Intelligence: http://localhost:3002
+# - Memory: http://localhost:3003
+# - Social: http://localhost:8080
+```
+
+## 🛡️ Core Principles
+
+- **Human Agency**: Every AI decision can be overridden by human choice
+- **Data Sovereignty**: Complete ownership and control of personal/business data
+- **Ethical AI**: All AI operations evaluated through the SPELWork framework
+- **Privacy First**: No unnecessary external dependencies or data sharing
+- **Platform Independence**: No vendor lock-in or mandatory external services
+
+## 📚 Documentation
+
+- **[Main README](../README.md)**: Complete platform overview and setup
+- **[Intelligence Service](../services/intelligence/README.md)**: Contact processing and data enrichment
+- **[Memory Service](../services/memory/README.md)**: Semantic search and coordination
+- **[Social Service](../services/social/README.md)**: Multi-platform content automation
+- **[Architecture Guide](../docs/TWINNING_ARCHITECTURE.md)**: Technical architecture
+- **[Contributing Guidelines](../CONTRIBUTING.md)**: Development and ethical AI principles
+
+## ⚖️ License
+
+**Copyright (c) 2025 Toilville Consulting / Peter Swimm - All Rights Reserved**
+
+For licensing inquiries: licensing@itstoilville.com
 
 ---
 
-For more information, see the main README in the repository root.
+**Twinning** - Professional AI infrastructure that respects human choice.
+
+*Built by workers, for workers.*
