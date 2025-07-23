@@ -79,6 +79,39 @@ out/
 # Add your project-specific ignores below this line
 # (The setup script can help add language-specific patterns)
 
+# Personal configuration and workspace files
+.claude/
+*.local.json
+*.personal.*
+.history/
+.scratch/
+notes.md
+scratch.*
+TODO.personal.md
+
+# AI/LLM configuration files
+.anthropic/
+.openai/
+.ollama/
+.cursor/
+.continue/
+.codeium/
+.copilot/
+
+# Mac specific (additional)
+.Trash/
+*.app
+
+# Additional IDE/Editor configs
+*.code-workspace
+.fleet/
+.nova/
+
+# Personal project management
+kanban.md
+project-notes.md
+personal-todo.md
+
 # Project status and board management files
 PROJECT_STATUS.md
 PROJECT_BOARD_IMPORT.md
