@@ -1,12 +1,19 @@
-# Contributing to Twining
+# Contributing to Twinning
 
-*A prole summer project - built by working folks, for working folks*
+*AI-Human Collaboration Platform - Built by workers, for workers*
 
-Thanks for wanting to help build something useful! This isn't some corporate open source project with layers of bureaucracy. We're just regular people trying to make tools that actually matter.
+Thanks for wanting to help build something that empowers human agency in the AI era! Twinning is a privacy-first, self-hosted AI infrastructure platform that puts data sovereignty and ethical AI at the center. We're regular people building professional-grade tools that actually matter for human autonomy.
 
 ## Ground Rules
 
-Simple: don't be a jerk. Full details in our [Code of Conduct](CODE_OF_CONDUCT.md), but the gist is treat people like human beings, not code-producing machines.
+Simple: don't be a jerk, and respect our core principles. Full details in our [Code of Conduct](CODE_OF_CONDUCT.md), but the gist is treat people like human beings, not code-producing machines.
+
+**Core Principles:**
+- **Data Sovereignty**: Your data stays under your control
+- **Human Agency**: AI amplifies humans, never replaces human choice
+- **Ethical AI**: All AI operations use the SPELWork ethical framework
+- **Privacy First**: No unnecessary external dependencies or data sharing
+- **Professional Quality**: Built for real production use, not just experiments
 
 ## How to Jump In
 
@@ -26,8 +33,9 @@ Great! Tell us:
 - What problem would this solve?
 - Who would use it?
 - Why is this worth building?
+- How does it align with our data sovereignty and ethical AI principles?
 
-We're building for real users with real problems, not feature creep.
+We're building for real users with real problems, not feature creep. Ideas should strengthen human agency and data control.
 
 ### Want to Code?
 
@@ -63,19 +71,33 @@ We're keeping this simple. No 47-step setup process.
 
 ### What You Need
 
-- A computer that can run code
+- A computer that can run code (preferably macOS for full MCP integration)
 - Git (probably already have it)
+- Docker and Docker Compose for local development
 - Basic command line skills
-- Whatever language/runtime we end up using
+- Node.js (for Intelligence service) or Python (for Memory/Social services)
+- Understanding of our ethical AI principles (SPELWork framework)
 
 ### Getting Started
 
 ```bash
 # Grab the code
 git clone your-fork
-cd twining
+cd twinning
 
-# We'll add actual setup steps as we build this
+# Quick start with Docker
+docker-compose up
+
+# Or run individual services
+cd services/intelligence && npm install && npm run dev
+cd services/memory && pip install -r requirements.txt && python memory_api.py
+cd services/social && pip install -r requirements.txt && python social_automation_api.py
+
+# Check health of all services
+curl http://localhost:3000/health  # Core
+curl http://localhost:3002/health  # Intelligence 
+curl http://localhost:3003/health  # Memory
+curl http://localhost:8080/health  # Social
 ```
 
 ### Testing
@@ -93,6 +115,9 @@ cd twining
 - **Simple over complex** - If you need a PhD to understand it, rewrite it
 - **Working over perfect** - Ship something useful, then make it better
 - **Comments for the why** - The code shows what, comments explain why
+- **Ethical by design** - All AI operations must use the SPELWork framework
+- **Privacy preserving** - No unnecessary external API calls or data sharing
+- **Performance matters** - We maintain real benchmarks (64.3 contacts/sec, etc.)
 
 ### Commit Messages
 
@@ -123,8 +148,10 @@ Remember: we're all doing this in our spare time, so be patient and be kind.
 
 - **Help newcomers** - We were all beginners once
 - **Share knowledge** - Teach what you know, learn what you don't
-- **Stay practical** - Focus on building useful stuff
-- **Keep it real** - No pretentious tech bro nonsense
+- **Stay practical** - Focus on building useful stuff that empowers people
+- **Keep it real** - No pretentious tech bro nonsense or AI hype
+- **Respect privacy** - Never ask for or share personal data unnecessarily
+- **Human-centered** - AI should amplify human capabilities, not replace humans
 
 ## Need Help?
 
@@ -148,4 +175,6 @@ By contributing, you're agreeing your code can be used under whatever open licen
 
 ---
 
-Thanks for helping build something that matters!
+**Twinning** - AI-Human Collaboration with Data Sovereignty
+
+Thanks for helping build something that truly empowers human agency in the AI era!

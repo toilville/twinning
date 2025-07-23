@@ -1,16 +1,18 @@
-# Prole Summer Project Template
+# Twinning Project Template
 
-*A GitHub template for working class coders*
+*AI-Human Collaboration Platform Template - Built by workers, for workers*
 
-This template helps you quickly set up new projects that follow the prole summer ethos: built by workers, for workers, with an emphasis on simplicity and real-world utility.
+This template helps you quickly set up new projects that follow the Twinning philosophy: ethical AI infrastructure that empowers human agency while maintaining complete data sovereignty.
 
 ## What You Get
 
-- **README.md template** - Prole summer styling with placeholder system
-- **CONTRIBUTING.md template** - No-BS contribution guidelines
-- **CODE_OF_CONDUCT.md** - Toilville Code of Conduct (verbatim)
+- **README.md template** - Professional yet accessible styling with placeholder system
+- **CONTRIBUTING.md template** - Clear contribution guidelines emphasizing ethical AI principles
+- **CODE_OF_CONDUCT.md** - Toilville Code of Conduct with human-centered values
 - **GitHub issue templates** - Simple, friendly bug reports and feature requests
 - **Setup script** - Automated project initialization
+- **Service templates** - Microservice patterns with SPELWork ethical framework integration
+- **Docker configuration** - Self-hosted infrastructure templates
 
 ## Using This Template
 
@@ -30,11 +32,13 @@ This template helps you quickly set up new projects that follow the prole summer
 
 ## Template Features
 
-### Prole Summer Style
-- Anti-corporate messaging
-- Plain language over technical jargon
-- Focus on real utility over Silicon Valley buzzwords
-- Built-by-workers, for-workers messaging
+### Twinning Style
+- **Human Agency First**: AI amplifies humans, never replaces human choice
+- **Data Sovereignty**: Your data, your rules - no platform lock-in
+- **Professional Quality**: Production-ready code with real performance benchmarks
+- **Plain Language**: Technical excellence explained clearly, no Silicon Valley buzzwords
+- **Ethical AI**: SPELWork framework integration for responsible AI development
+- **Built-by-workers, for-workers**: Accessible to regular people, not just AI researchers
 
 ### Placeholders
 All templates use `{{PLACEHOLDER}}` format for easy replacement:
@@ -63,22 +67,33 @@ All templates use `{{PLACEHOLDER}}` format for easy replacement:
         └── config.yml         # Issue template config
 ```
 
-## The Prole Summer Spirit
+## The Twinning Philosophy
 
 Projects using this template should embody:
 
-- **Accessibility** - Built for regular people, not just developers
-- **Simplicity** - If it needs a manual, make it simpler
-- **Utility** - Solve real problems that working people face
-- **Community** - Built by and for the community, not corporate interests
-- **Honesty** - No marketing speak, just honest descriptions
+- **Human Amplification** - AI enhances human capabilities without replacing human judgment
+- **Data Sovereignty** - Complete user control over personal and business data
+- **Ethical AI** - All AI operations evaluated through transparent ethical frameworks
+- **Accessibility** - Built for regular people, not just AI researchers or developers
+- **Performance Excellence** - Production-ready infrastructure with measurable benchmarks
+- **Platform Independence** - No vendor lock-in or mandatory external dependencies
+- **Privacy First** - No surveillance capitalism or unnecessary data collection
+- **Community Driven** - Built by and for the community, not corporate interests
+- **Transparency** - Open source, clear documentation, honest about capabilities and limitations
 
 ## Contributing to This Template
 
 Found ways to improve the template? Send a PR! We're all figuring this out together.
 
-Keep it simple, keep it real, and remember: this is for working folks trying to build useful things in their spare time.
+When contributing, please ensure your changes align with:
+- **Ethical AI principles** using the SPELWork framework
+- **Data sovereignty** and privacy-first design
+- **Human agency** in all AI-powered features
+- **Professional quality** with real performance standards
+- **Accessibility** for working folks building useful things
 
 ---
 
-Built by workers, for workers. Keep it real!
+**Twinning** - AI-Human Collaboration with Data Sovereignty
+
+Built by workers, for workers. Professional AI infrastructure that respects human choice.
