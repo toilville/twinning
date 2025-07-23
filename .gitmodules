@@ -1,0 +1,3 @@
+[submodule "dependencies/spelwork"]
+	path = dependencies/spelwork
+	url = ../spelWork
