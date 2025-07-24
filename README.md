@@ -1,6 +1,6 @@
 # Twinning
 
-**AI-Human Collaboration Platform with Complete Data Sovereignty**
+**Personal AI Automation to Improve Your Workflow - The SPELCraft Way**
 
 *Your Data, Your Rules - AI amplifies humans, never replaces human choice*
 
@@ -9,7 +9,7 @@
 [![AI Ethics](https://img.shields.io/badge/AI-SPELWork%20Framework-green.svg)](#ethical-ai-framework)
 [![Data Sovereignty](https://img.shields.io/badge/Data-Self%20Hosted-purple.svg)](#data-sovereignty)
 
-**Twinning** is a self-hosted AI infrastructure platform that empowers human agency through ethical AI collaboration. Built on the principle of "Your Data, Your Rules," Twinning provides complete data sovereignty while amplifying human capabilities through intelligent automation.
+**Twinning** is your personal AI automation platform that improves workflow efficiency through ethical, self-hosted intelligence. Built with the SPELWork framework, Twinning transforms how you work by automating routine tasks while preserving complete control over your personal and business data.
 
 ## 🎯 Core Philosophy
 

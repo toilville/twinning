@@ -12,6 +12,7 @@ Transform the Phase 0.5 Toolkit into the **Twinning** project, integrating with 
 - [ ] **Step 0.6**: Update Twinning project scope based on current toilville ecosystem status
 - [ ] **Step 0.7**: Identify specific Phase0.5 components that align with active toilville projects
 - [ ] **Step 0.8**: Create mapping between this week's GitHub issues and Twinning features
+- [ ] **Step 0.9**: Audit all documentation files for proper source attribution where external data is used
 
 ## Phase 1: Discovery & Analysis (Small API Calls)
 - [ ] **Step 1.1**: Read and analyze `research/Phase0.5_Toolkit_Final/docs/CHAT_LOG_SUMMARY.md`
@@ -21,7 +22,7 @@ Transform the Phase 0.5 Toolkit into the **Twinning** project, integrating with 
 - [ ] **Step 1.5**: Cross-reference Phase0.5 goals with Phase 0 research findings
 
 ## Phase 2: Project Structure Setup
-- [ ] **Step 2.1**: Update main README.md to reflect "Twinning" branding
+- [x] **Step 2.1**: Update main README.md to focus on personal AI automation workflow improvement with SPELWork framework
 - [ ] **Step 2.2**: Create project structure directories (src/, docs/, tools/, config/)
 - [ ] **Step 2.3**: Move Phase0.5 assets to appropriate new locations
 - [ ] **Step 2.4**: Create `.github/` folder with issue templates and workflows
