@@ -1,0 +1,28 @@
+## Dynamic Configuration
+
+# Dashboard configuration
+http:
+  routers:
+    dashboard:
+      rule: "Host(`traefik.localhost`)"
+      service: "api@internal"
+      entryPoints:
+        - "websecure"
+      middlewares:
+        - auth
+      tls: {}
+
+  middlewares:
+    auth:
+      basicAuth:
+        users:
+          - "admin:$apr1$H6uskkkW$IgXLP6ewTrSuBkTrqE8wj/"  # admin:admin123
+    securityHeaders:
+      headers:
+        frameDeny: true
+        sslRedirect: true
+        browserXssFilter: true
+        contentTypeNosniff: true
+        stsIncludeSubdomains: true
+        stsPreload: true
+        stsSeconds: 31536000

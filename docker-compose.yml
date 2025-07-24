@@ -1,23 +1,140 @@
 version: '3.8'
 
 services:
-  # Existing Twinning Infrastructure
-  nextcloud:
-    image: nextcloud:latest
-    container_name: twinning-nextcloud
+  # Twinning Core Services
+  twinning-core:
+    build: ./twinning-core
+    container_name: twinning-orchestrator
     restart: unless-stopped
     ports:
-      - "8080:80"
-    volumes:
-      - nextcloud_data:/var/www/html
-      - ./data/nextcloud:/var/www/html/data
+      - "3000:3000"
     environment:
-      - NEXTCLOUD_ADMIN_USER=admin
-      - NEXTCLOUD_ADMIN_PASSWORD=admin123
-      - NEXTCLOUD_TRUSTED_DOMAINS=localhost
+      - NODE_ENV=production
+      - INTELLIGENCE_URL=http://intelligence:3002
+      - MEMORY_URL=http://memory:3003
+      - SOCIAL_URL=http://social:8080
+    networks:
+      - twinning-network
+    depends_on:
+      - intelligence
+      - memory
+      - social
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.twinning-core.rule=Host(`twinning.localhost`)"
+
+  # Intelligence Service (Rockford)
+  intelligence:
+    build: 
+      context: ./services/intelligence
+      dockerfile: Dockerfile
+    container_name: twinning-intelligence
+    restart: unless-stopped
+    ports:
+      - "3002:3002"
+    environment:
+      - NODE_ENV=production
+      - POSTGRES_URL=postgresql://twinning:twinning_password@postgres:5432/twinning
+      - REDIS_URL=redis://redis:6379
+      - MEMORY_URL=http://memory:3003
+    networks:
+      - twinning-network
+    depends_on:
+      - postgres
+      - redis
+      - memory
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.intelligence.rule=Host(`intelligence.localhost`)"
+
+  # Memory Service (OMAC)
+  memory:
+    build:
+      context: ./services/memory
+      dockerfile: Dockerfile
+    container_name: twinning-memory
+    restart: unless-stopped
+    ports:
+      - "3003:3003"
+    environment:
+      - POSTGRES_URL=postgresql://twinning:twinning_password@postgres:5432/twinning
+      - REDIS_URL=redis://redis:6379
+    volumes:
+      - memory_data:/app/data
+    networks:
+      - twinning-network
+    depends_on:
+      - postgres
+      - redis
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.memory.rule=Host(`memory.localhost`)"
+
+  # Social Service (Scuttle)
+  social:
+    build: 
+      context: ./services/social
+      dockerfile: Dockerfile
+    container_name: twinning-social
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - POSTGRES_URL=postgresql://twinning:twinning_password@postgres:5432/twinning
+      - MEMORY_URL=http://memory:3003
+    networks:
+      - twinning-network
+    depends_on:
+      - postgres
+      - memory
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.social.rule=Host(`social.localhost`)"
+
+  # Enhanced with n8n Integration
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: twinning-n8n
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_HOST=${N8N_HOST:-n8n.localhost}
+      - N8N_PROTOCOL=${N8N_PROTOCOL:-http}
+      - WEBHOOK_URL=${WEBHOOK_URL:-http://n8n.localhost/}
+    volumes:
+      - n8n_data:/home/node/.n8n
+    networks:
+      - twinning-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.n8n.rule=Host(`${N8N_HOST:-n8n.localhost}`)"
+
+  # Database with pgvector
+  postgres:
+    image: pgvector/pgvector:pg15
+    container_name: twinning-postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=twinning
+      - POSTGRES_USER=twinning
+      - POSTGRES_PASSWORD=twinning_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
     networks:
       - twinning-network
 
+  # Redis for caching
+  redis:
+    image: redis:alpine
+    container_name: twinning-redis
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    networks:
+      - twinning-network
+
+  # Enhanced Monitoring Stack
   prometheus:
     image: prom/prometheus:latest
     container_name: twinning-prometheus
@@ -34,34 +151,99 @@ services:
       - '--web.console.templates=/etc/prometheus/consoles'
     networks:
       - twinning-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.prometheus.rule=Host(`prometheus.localhost`)"
 
   grafana:
     image: grafana/grafana:latest
     container_name: twinning-grafana
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "3004:3000"
     volumes:
       - grafana_data:/var/lib/grafana
     environment:
-      - GF_SECURITY_ADMIN_PASSWORD=admin123
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin}
     networks:
       - twinning-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.grafana.rule=Host(`grafana.localhost`)"
+
+  # Local AI Integration (Ollama)
+  ollama:
+    image: ollama/ollama:latest
+    container_name: twinning-ollama
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    environment:
+      - OLLAMA_HOST=0.0.0.0
+    networks:
+      - twinning-network
+
+  # Traefik for routing and SSL
+  traefik:
+    image: traefik:v2.9
+    container_name: twinning-traefik
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik:/etc/traefik
+      - traefik_data:/letsencrypt
+    networks:
+      - twinning-network
+
+  # Phase 0.5 Toolkit Integration
+  nextcloud:
+    image: nextcloud:latest
+    container_name: twinning-nextcloud
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    volumes:
+      - nextcloud_data:/var/www/html
+      - ./data/nextcloud:/var/www/html/data
+    environment:
+      - NEXTCLOUD_ADMIN_USER=${NEXTCLOUD_ADMIN_USER:-admin}
+      - NEXTCLOUD_ADMIN_PASSWORD=${NEXTCLOUD_ADMIN_PASSWORD:-admin123}
+      - NEXTCLOUD_TRUSTED_DOMAINS=nextcloud.localhost
+    networks:
+      - twinning-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nextcloud.rule=Host(`nextcloud.localhost`)"
 
   firefly:
     image: fireflyiii/core:latest
     container_name: twinning-firefly
     restart: unless-stopped
     ports:
-      - "8081:8080"
+      - "8082:8080"
     volumes:
       - firefly_upload:/var/www/html/storage/upload
     environment:
-      - APP_KEY=base64:SomeRandomStringOf32CharsExactly
-      - DB_CONNECTION=sqlite
-      - APP_URL=http://localhost:8081
+      - APP_KEY=${FIREFLY_APP_KEY:-base64:SomeRandomStringOf32CharsExactly}
+      - DB_CONNECTION=pgsql
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_DATABASE=firefly
+      - DB_USERNAME=twinning
+      - DB_PASSWORD=twinning_password
+      - APP_URL=http://firefly.localhost
     networks:
       - twinning-network
+    depends_on:
+      - postgres
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.firefly.rule=Host(`firefly.localhost`)"
 
   influxdb:
     image: influxdb:2.0
@@ -73,77 +255,49 @@ services:
       - influxdb_data:/var/lib/influxdb2
     environment:
       - INFLUXDB_DB=twinning
-      - INFLUXDB_ADMIN_USER=admin
-      - INFLUXDB_ADMIN_PASSWORD=admin123
+      - INFLUXDB_ADMIN_USER=${INFLUXDB_ADMIN_USER:-admin}
+      - INFLUXDB_ADMIN_PASSWORD=${INFLUXDB_ADMIN_PASSWORD:-admin123}
     networks:
       - twinning-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.influxdb.rule=Host(`influxdb.localhost`)"
 
-  # New: Service Integration Architecture
-  twinning-core:
-    build: ./twinning-core
-    container_name: twinning-orchestrator
+  # Syncthing for secure file synchronization
+  syncthing:
+    image: linuxserver/syncthing:latest
+    container_name: twinning-syncthing
     restart: unless-stopped
     ports:
-      - "3001:3000"
-    environment:
-      - NODE_ENV=production
-      - SOCIAL_SERVICE_URL=http://social-automation:8080
-      - PIPELINE_SERVICE_URL=http://pipeline-intelligence:8081
-      - GRAFANA_URL=http://grafana:3000
-      - NEXTCLOUD_URL=http://nextcloud:80
-      - INFLUXDB_URL=http://influxdb:8086
-    networks:
-      - twinning-network
-    depends_on:
-      - social-automation
-      - pipeline-intelligence
-      - influxdb
-
-  social-automation:
-    build: 
-      context: ./services/social
-      dockerfile: Dockerfile
-    container_name: twinning-social
-    restart: unless-stopped
-    environment:
-      - TWINNING_API_URL=http://twinning-core:3000
-      - NODE_ENV=production
-    networks:
-      - twinning-network
-      
-  pipeline-intelligence:
-    build:
-      context: ./services/pipeline  
-      dockerfile: Dockerfile
-    container_name: twinning-pipeline
-    restart: unless-stopped
-    environment:
-      - TWINNING_API_URL=http://twinning-core:3000
-      - NODE_ENV=production
-    networks:
-      - twinning-network
-
-  mysql:
-    image: mysql:8.0
-    container_name: twinning-mysql
-    restart: unless-stopped
-    environment:
-      - MYSQL_ROOT_PASSWORD=root_password
-      - MYSQL_DATABASE=twinning
-      - MYSQL_USER=twinning
-      - MYSQL_PASSWORD=twinning_password
+      - "8384:8384"  # Web UI
+      - "22000:22000"  # TCP file transfers
+      - "21027:21027/udp"  # UDP discovery
     volumes:
-      - mysql_data:/var/lib/mysql
+      - syncthing_config:/config
+      - ./data/syncthing:/data
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Los_Angeles
     networks:
       - twinning-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.syncthing.rule=Host(`syncthing.localhost`)"
 
 volumes:
-  nextcloud_data:
+  memory_data:
+  postgres_data:
+  redis_data:
   prometheus_data:
   grafana_data:
+  n8n_data:
+  ollama_data:
+  traefik_data:
+  nextcloud_data:
   firefly_upload:
   influxdb_data:
-  mysql_data:
+  syncthing_config:
 
 networks:
   twinning-network:

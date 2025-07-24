@@ -1,0 +1,259 @@
+{
+  "name": "OMAC Daily Summary",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "daily-summary",
+        "options": {}
+      },
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=http://memory:3003/api/memories/search",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "start_date",
+              "value": "={{ $today.startOf('day').format() }}"
+            },
+            {
+              "name": "end_date",
+              "value": "={{ $today.endOf('day').format() }}"
+            },
+            {
+              "name": "limit",
+              "value": "50"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true,
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "name": "Get Today's Memories",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Group memories by source\nconst memories = $input.item.json.data.memories;\nconst groupedMemories = {};\n\nfor (const memory of memories) {\n  const source = memory.metadata.source || 'unknown';\n  if (!groupedMemories[source]) {\n    groupedMemories[source] = [];\n  }\n  groupedMemories[source].push(memory);\n}\n\n// Create summary sections\nlet summary = `# Daily Memory Summary for ${new Date().toLocaleDateString()}\\n\\n`;\n\nfor (const [source, mems] of Object.entries(groupedMemories)) {\n  summary += `## ${source.charAt(0).toUpperCase() + source.slice(1)} (${mems.length})\\n\\n`;\n  \n  for (const mem of mems) {\n    const title = mem.content.title || 'Untitled';\n    const text = mem.content.text || '';\n    const time = new Date(mem.metadata.timestamp).toLocaleTimeString();\n    const tags = mem.metadata.tags ? mem.metadata.tags.join(', ') : '';\n    \n    summary += `### ${title}\\n`;\n    summary += `${text}\\n`;\n    summary += `*Created at ${time}${tags ? ' | Tags: ' + tags : ''}*\\n\\n`;\n  }\n}\n\n// Add statistics\nsummary += `## Statistics\\n\\n`;\nsummary += `- Total memories: ${memories.length}\\n`;\nsummary += `- Sources: ${Object.keys(groupedMemories).length}\\n`;\n\nreturn { summary };"
+      },
+      "name": "Generate Summary",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        650,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=http://memory:3003/api/memories",
+        "method": "POST",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "content",
+              "value": "={\n  \"title\": \"Daily Summary for {{ $today.format('YYYY-MM-DD') }}\",\n  \"text\": \"{{ $node[\"Generate Summary\"].json[\"summary\"] }}\",\n  \"format\": \"markdown\"\n}"
+            },
+            {
+              "name": "metadata",
+              "value": "={\n  \"source\": \"n8n_workflow\",\n  \"type\": \"daily_summary\",\n  \"timestamp\": \"{{ $now.toISOString() }}\",\n  \"tags\": [\"summary\", \"daily\", \"automated\"]\n}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Save Summary to Memory",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        850,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $node[\"Webhook\"].json[\"send_email\"] }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "name": "Should Send Email?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1050,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "fromEmail": "omac@example.com",
+        "toEmail": "={{ $node[\"Webhook\"].json[\"email\"] || \"user@example.com\" }}",
+        "subject": "=Daily Memory Summary - {{ $today.format('YYYY-MM-DD') }}",
+        "text": "={{ $node[\"Generate Summary\"].json[\"summary\"] }}",
+        "options": {}
+      },
+      "name": "Send Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        1250,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=http://n8n:5678/webhook/notification",
+        "method": "POST",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "title",
+              "value": "Daily Summary Generated"
+            },
+            {
+              "name": "message",
+              "value": "=Your daily summary for {{ $today.format('YYYY-MM-DD') }} has been generated and saved to memory."
+            },
+            {
+              "name": "memory_id",
+              "value": "={{ $node[\"Save Summary to Memory\"].json[\"id\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Send Notification",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        1250,
+        400
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Get Today's Memories",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Today's Memories": {
+      "main": [
+        [
+          {
+            "node": "Generate Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Summary": {
+      "main": [
+        [
+          {
+            "node": "Save Summary to Memory",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Summary to Memory": {
+      "main": [
+        [
+          {
+            "node": "Should Send Email?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Should Send Email?": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Notification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": ""
+  },
+  "tags": [
+    "OMAC",
+    "memory",
+    "daily",
+    "summary"
+  ],
+  "triggerCount": 1,
+  "createdAt": "2025-07-24T15:00:00.000Z",
+  "updatedAt": "2025-07-24T15:00:00.000Z"
+}
